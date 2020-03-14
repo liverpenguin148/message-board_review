@@ -1,0 +1,9 @@
+<!--
+  flashの保存形式(ハッシュ) データ{success: 'Massage が正常に投稿されました'}
+  message_type ,message
+  success      ,'Massage が正常に投稿されました'  となる
+-->
+
+<% flash.each do |message_type,message| %>
+  <div><%= message %></div>
+<% end %>

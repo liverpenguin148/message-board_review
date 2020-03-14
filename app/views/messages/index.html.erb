@@ -1,0 +1,9 @@
+<h1>メッセージ一覧</h1>
+
+<ul>
+  <% @messages.each do |message| %>
+    <li><%= message.content %></li>
+  <% end %>
+  
+  <%= link_to '新規メッセージの投稿', new_message_path %>
+</ul>
