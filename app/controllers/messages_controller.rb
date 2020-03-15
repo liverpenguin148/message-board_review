@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   
   def index
-    @messages = Message.all
+    @messages = Message.order(id: :desc).page(params[:page]).per(3) #ページネーション
   end
   
   def show
@@ -61,6 +61,6 @@ class MessagesController < ApplicationController
   # params.require(:message) ⇒  messageeの値が取得
   # .permit(:content) ⇒  message.content の値を取得
   def message_param
-    params.require(:message).permit(:content) 
+    params.require(:message).permit(:content, :title) 
   end
 end

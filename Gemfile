@@ -62,3 +62,5 @@ end
 group :development, :test do
   gem 'rubocop'
 end
+
+gem 'kaminari'

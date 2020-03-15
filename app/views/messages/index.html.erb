@@ -2,8 +2,11 @@
 
 <ul>
   <% @messages.each do |message| %>
-    <li><%= message.content %></li>
+    <li><%= message.content %> : <%= message.title %> &gt; <%= message.content %></li>
   <% end %>
+  
+  <!--ページネーション-->
+  <%= paginate @messages %>
   
   <%= link_to '新規メッセージの投稿', new_message_path %>
 </ul>

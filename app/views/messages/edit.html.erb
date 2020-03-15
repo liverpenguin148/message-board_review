@@ -1,6 +1,6 @@
 <h1>id: <%= @message.id %>のメッセージ編集ページ</h1>
 
 <!--フォームの入力-->
-<%= render 'form' message: @message %>
+<%= render 'form', message: @message %>
 
 <%= link_to '一覧に戻る', messages_path %>
