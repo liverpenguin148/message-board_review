@@ -1,10 +1,13 @@
 class MessagesController < ApplicationController
+  #アクション実施前にset_messageを行う
+  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  
   def index
     @messages = Message.all
   end
   
   def show
-    @message = Message.find(params[:id]) # params: Railsで送られてきた値を受け取るためのメソッド
+    set_message
   end
   
   def new
@@ -28,11 +31,11 @@ class MessagesController < ApplicationController
   #
   
   def edit
-    @message = Message.find(params[:id])
+    set_message
   end
   
   def update
-    @message = Message.find(params[:id])
+    set_message
     if @message.update(message_param)
       flash[:success] = 'Massage が正常に投稿されました'
       redirect_to @message
@@ -43,17 +46,21 @@ class MessagesController < ApplicationController
   end
   
   def destroy
-    @message = Message.find(params[:id])
+    set_message
     @message.destroy
     flash[:success] = 'Massage が正常に削除されました'
     redirect_to messages_url
   end
   
   private
+  
+  def set_message
+    @message = Message.find(params[:id]) # params: Railsで送られてきた値を受け取るためのメソッド
+  end
   # Strong Parameter作成
   # params.require(:message) ⇒  messageeの値が取得
   # .permit(:content) ⇒  message.content の値を取得
   def message_param
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content) 
   end
 end
